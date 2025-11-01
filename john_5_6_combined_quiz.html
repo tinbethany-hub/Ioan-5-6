@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz - Ioan Capitolele 5 și 6</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-4">
+    <div class="max-w-4xl mx-auto" id="app"></div>
+
+    <script>
+        const questions = {
+            trueFalse: [
+                // Cap 5
+                { id: 'c5q1', text: 'Lângă poarta Oilor este o scăldătoare numită Cherit. (5:2)', correct: 'F', chapter: 5 },
+                { id: 'c5q2', text: 'În pridvoarele de la Betesda se jucau o mulțime de copii. (5:3)', correct: 'F', chapter: 5 },
+                { id: 'c5q3', text: 'Slăbănogul de la Betesda avea 38 de ani. (5:5)', correct: 'A', chapter: 5 },
+                { id: 'c5q4', text: 'Slăbănogul de la Betesda a fost vindecat într-o zi de joi. (5:9)', correct: 'F', chapter: 5 },
+                { id: 'c5q5', text: 'Slăbănogul de la Betesda a știut exact cine îl vindecase. (5:13)', correct: 'F', chapter: 5 },
+                { id: 'c5q6', text: 'Iudeii doreau să îl omoare pe Isus pentru că a vindecat pe cineva în ziua Sabatului. (5:16)', correct: 'A', chapter: 5 },
+                { id: 'c5q7', text: 'Dumnezeu Tatăl nu judeca pe nimeni ci toată judecata a dat-o îngerilor. (5:22)', correct: 'F', chapter: 5 },
+                { id: 'c5q8', text: 'Cei morți vor auzi glasul Fiului lui Dumnezeu și cei ce-L vor asculta vor învia. (5:25)', correct: 'A', chapter: 5 },
+                { id: 'c5q9', text: 'Judecata lui Isus este dreaptă pentru că nu caută să facă voia Lui ci voia Tatălui. (5:30)', correct: 'A', chapter: 5 },
+                { id: 'c5q10', text: 'Lucrările Domnului Isus arătau că El era trimisul lui Ioan. (5:36)', correct: 'F', chapter: 5 },
+                { id: 'c5q11', text: 'Scripturile pe care le citeau iudeii, mărturiseau despre Domnul Isus. (5:39)', correct: 'A', chapter: 5 },
+                { id: 'c5q12', text: 'Iudeii L-au primit pe Domnul Isus pentru că venea de la Dumnezeu. (5:43)', correct: 'F', chapter: 5 },
+                { id: 'c5q13', text: 'Moise a scris despre Domnul Isus. (5:46)', correct: 'A', chapter: 5 },
+                // Cap 6
+                { id: 'c6q1', text: 'Nimeni nu poate veni la Domnul Isus, dacă nu este atras de Tatăl. (6:44)', correct: 'A', chapter: 6 },
+                { id: 'c6q2', text: 'Isus a zis ucenicilor: "Nu v-am ales Eu pe voi, cei doisprezece?" (6:70)', correct: 'A', chapter: 6 },
+                { id: 'c6q3', text: 'O mare gloată mergea după Isus pentru că vedea semnele pe care le făcea cu cei bolnavi. (6:2)', correct: 'A', chapter: 6 },
+                { id: 'c6q4', text: 'Căci Tatăl, adică Însuși Dumnezeu L-a însemnat pe Fiul omului cu pecetea Lui. (6:27)', correct: 'A', chapter: 6 },
+                { id: 'c6q5', text: 'Israel a mâncat pâine în pustie după cum este scris: "Le-a dat să mănânce mană din cer." (6:31)', correct: 'A', chapter: 6 },
+                { id: 'c6q6', text: 'Isus Și-a ridicat ochii și a văzut că o mare gloată vine spre El, și a zis lui Andrei: "De unde avem să cumpărăm pâini ca să mănânce oamenii aceștia?" (6:5)', correct: 'F', chapter: 6 },
+                { id: 'c6q7', text: 'Părinții copiilor lui Israel au mâncat mană în pustie și au murit. (6:49)', correct: 'A', chapter: 6 },
+                { id: 'c6q8', text: 'În mulțimea de oameni era un băiețel care avea cinci pâini și doi pești. (6:9)', correct: 'A', chapter: 6 },
+                { id: 'c6q9', text: 'Pâinea care s-a coborât din cer este ca mana pe care au mâncat-o părinții voștri, și cine mănâncă din ea va trăi în veac. (6:58)', correct: 'F', chapter: 6 },
+                { id: 'c6q10', text: 'Isus a luat pâinile, a mulțumit lui Dumnezeu și le-a dat ucenicilor să le împartă celor ce ședeau jos. (6:11)', correct: 'A', chapter: 6 },
+                { id: 'c6q11', text: 'Când au văzut minunea pe care o făcuse Isus cu pâinile, oamenii aceia voiau să vină să-L ia cu sila și să-L facă împărat. (6:14-15)', correct: 'A', chapter: 6 },
+                { id: 'c6q12', text: 'După cum Tatăl care este viu, M-a trimis pe Mine, și Eu trăiesc prin Tatăl, tot așa cine Mă mănâncă pe Mine, va trăi și el prin Mine. (6:57)', correct: 'A', chapter: 6 },
+                { id: 'c6q13', text: 'Isus știa în Sine că ucenicii Săi cârteau împotriva vorbirii Lui. (6:61)', correct: 'A', chapter: 6 },
+                { id: 'c6q14', text: 'În proroci este scris: "Toți vor fi învățați de Dumnezeu." (6:45)', correct: 'A', chapter: 6 },
+                { id: 'c6q15', text: 'Când s-a înserat, ucenicii lui Isus s-au suit într-o corabie și treceau marea, dar Isus nu venise la ei. (6:16,17)', correct: 'A', chapter: 6 },
+                { id: 'c6q16', text: 'Norodul care rămăsese de cealaltă parte a mării, băgase de seamă că acolo nu este decât o corabie și că Isus Se suise în corabie cu ucenicii Lui. (6:22)', correct: 'F', chapter: 6 },
+                { id: 'c6q17', text: 'Isus știa de la început cine erau cei ce nu cred și cel ce avea să-L vândă. (6:64)', correct: 'A', chapter: 6 },
+                { id: 'c6q18', text: 'Isus a răspuns celor ce-L căutau: "Adevărat, adevărat vă spun că Mă căutați pentru că ați văzut semne, nu pentru că ați mâncat din pâinile acelea și v-ați săturat." (6:26)', correct: 'F', chapter: 6 },
+                { id: 'c6q19', text: 'Voia Tatălui este ca oricine vede pe Fiul și crede în El, să aibă viața veșnică. (6:40)', correct: 'A', chapter: 6 },
+                { id: 'c6q20', text: 'În urma înfăptuirii minunii cu pâinile, Isus S-a dus iarăși pe munte cu ucenicii. (6:15)', correct: 'F', chapter: 6 },
+                { id: 'c6q21', text: 'Iudeii cârteau împotriva lui Isus pentru că El zicea: "Eu sunt Pâinea Vieții." (6:41)', correct: 'F', chapter: 6 },
+                { id: 'c6q22', text: 'Când L-au văzut pe Isus umblând pe mare și apropiindu-Se de corabie, ucenicii s-au înfricoșat. (6:19)', correct: 'A', chapter: 6 },
+                { id: 'c6q23', text: 'Nimeni nu a văzut pe Tatăl afară de Acela care vine de la Dumnezeu. (6:46)', correct: 'A', chapter: 6 },
+                { id: 'c6q24', text: 'Pâinea care se coboară din cer este de așa fel ca cineva să mănânce din ea și să nu moară. (6:50)', correct: 'A', chapter: 6 }
+            ],
+            multipleChoice: [
+                // Cap 5
+                { id: 'c5mc1', text: 'Cum se numește scăldătoarea de lângă Poarta Oilor? (5:2)', options: [{ v: 'a', t: 'Scăldătoarea Corturilor' }, { v: 'b', t: 'Scăldătoarea Finicilor' }, { v: 'c', t: 'Scăldătoarea Betesda' }], correct: 'c', chapter: 5 },
+                { id: 'c5mc2', text: 'Câte pridvoare avea scăldătoarea Betesda? (5:2)', options: [{ v: 'a', t: '5 pridvoare' }, { v: 'b', t: '7 pridvoare' }, { v: 'c', t: '12 pridvoare' }], correct: 'a', chapter: 5 },
+                { id: 'c5mc3', text: 'Ce se afla în pridvoarele Betesdei? (5:3)', options: [{ v: 'a', t: 'O mulțime de porumbei' }, { v: 'b', t: 'O mulțime de bolnavi' }, { v: 'c', t: 'O mulțime de copii' }], correct: 'b', chapter: 5 },
+                { id: 'c5mc4', text: 'Ce așteptau oamenii care stăteau la scăldătoarea Betesda? (5:3)', options: [{ v: 'a', t: 'Să li se dea de mâncare' }, { v: 'b', t: 'Să li se dea să bea vin' }, { v: 'c', t: 'Să se miște apa' }], correct: 'c', chapter: 5 },
+                { id: 'c5mc5', text: 'Cine se cobora în scăldătoarea Betesda și tulbura apa? (5:4)', options: [{ v: 'a', t: 'Un înger al Domnului' }, { v: 'b', t: 'Un preot de la Templu' }, { v: 'c', t: 'Domnul Isus' }], correct: 'a', chapter: 5 },
+                { id: 'c5mc6', text: 'Ce trebuia să facă un om ca să fie vindecat la Betesda? (5:4)', options: [{ v: 'a', t: 'Să scoată apa din scăldătoare' }, { v: 'b', t: 'Să își pună apă pe răni' }, { v: 'c', t: 'Să intre primul în apa tulburată' }], correct: 'c', chapter: 5 },
+                { id: 'c5mc7', text: 'Câți ani avea omul bolnav care se afla la scăldătoarea Betesda? (5:5)', options: [{ v: 'a', t: '35 de ani' }, { v: 'b', t: '38 de ani' }, { v: 'c', t: '40 de ani' }], correct: 'b', chapter: 5 },
+                { id: 'c5mc8', text: 'Ce întrebare i-a pus Isus omului bolnav de la Betesda când l-a văzut zăcând? (5:6)', options: [{ v: 'a', t: 'Vrei să te faci sănătos?' }, { v: 'b', t: 'De cât timp stai aici?' }, { v: 'c', t: 'De ce nu mergi în scăldătoare?' }], correct: 'a', chapter: 5 },
+                { id: 'c5mc9', text: 'Pe cine avea bolnavul la scăldătoarea Betesda ca să îl ajute să se bage în apă? (5:7)', options: [{ v: 'a', t: 'Pe fratele lui' }, { v: 'b', t: 'Pe mama sa' }, { v: 'c', t: 'Pe nimeni' }], correct: 'c', chapter: 5 },
+                { id: 'c5mc10', text: 'În ce zi a fost vindecat slăbănogul de la Betesda? (5:9)', options: [{ v: 'a', t: 'O zi de lucru' }, { v: 'b', t: 'O zi Sabat' }, { v: 'c', t: 'Sărbătoarea corturilor' }], correct: 'b', chapter: 5 },
+                { id: 'c5mc11', text: 'Unde l-a găsit Isus pe slăbănogul de la Betesda după ce a fost vindecat? (5:14)', options: [{ v: 'a', t: 'În Ghenezaret' }, { v: 'b', t: 'În Templu' }, { v: 'c', t: 'În piață' }], correct: 'b', chapter: 5 },
+                { id: 'c5mc12', text: 'Cui i-a dat Dumnezeu Tatăl toată judecata? (5:22)', options: [{ v: 'a', t: 'Serafimilor' }, { v: 'b', t: 'Oamenilor' }, { v: 'c', t: 'Fiului Său' }], correct: 'c', chapter: 5 },
+                { id: 'c5mc13', text: 'Pentru ce vor învia cei ce au făcut binele? (5:29)', options: [{ v: 'a', t: 'Pentru judecată' }, { v: 'b', t: 'Pentru viață' }, { v: 'c', t: 'Pentru osândă' }], correct: 'b', chapter: 5 },
+                { id: 'c5mc14', text: 'Cine are o mărturie mai mare decât a lui Ioan? (5:36)', options: [{ v: 'a', t: 'Filip' }, { v: 'b', t: 'Iacov' }, { v: 'c', t: 'Isus' }], correct: 'c', chapter: 5 },
+                { id: 'c5mc15', text: 'După care slavă a zis Isus că nu umblă? (5:41)', options: [{ v: 'a', t: 'slava de la oameni' }, { v: 'b', t: 'slava de la ucenici' }, { v: 'c', t: 'slava de la străini' }], correct: 'a', chapter: 5 },
+                { id: 'c5mc16', text: 'Despre cine a vorbit Isus Iudeilor când a zis: "este cine să vă învinuiască înaintea Tatălui"? (5:45)', options: [{ v: 'a', t: 'Despre Iosua' }, { v: 'b', t: 'Despre Moise' }, { v: 'c', t: 'Despre Ilie' }], correct: 'b', chapter: 5 },
+                { id: 'c5mc17', text: 'În cine și-au pus Iudeii nădejdea când a zis Isus "dacă l-ați crede pe el M-ați crede și pe Mine"? (5:45)', options: [{ v: 'a', t: 'În Tatăl' }, { v: 'b', t: 'În Ioan' }, { v: 'c', t: 'În Moise' }], correct: 'c', chapter: 5 },
+                // Cap 6
+                { id: 'c6mc1', text: 'Ce a făcut Isus după ce a trecut cu ucenicii dincolo de Marea Tiberiadei? (6:3)', options: [{ v: 'a', t: 'S-a suit pe munte' }, { v: 'b', t: 'a mers la Capernaum' }, { v: 'c', t: 'a urcat într-o corabie și vorbea mulțimii' }], correct: 'a', chapter: 6 },
+                { id: 'c6mc2', text: 'Isus a zis: "Eu sunt Pâinea care S-a coborât din cer. Dacă mănâncă cineva din pâinea aceasta: (6:51)', options: [{ v: 'a', t: 'va trăi în veac"' }, { v: 'b', t: 'nu va pieri niciodată"' }, { v: 'c', t: 'în veac nu va flămânzi"' }], correct: 'a', chapter: 6 },
+                { id: 'c6mc3', text: 'De ce L-a întrebat Isus pe ucenicul Său de unde ar putea cumpăra pâine pentru a hrăni mulțimea care Îl urma? (6:6)', options: [{ v: 'a', t: 'ca să vadă ce are de gând să facă' }, { v: 'b', t: 'ca să îl încerce' }, { v: 'c', t: 'ca să-i vadă credința' }], correct: 'b', chapter: 6 },
+                { id: 'c6mc4', text: 'Unde a vorbit Isus oamenilor când a mers la Capernaum după înmulțirea pâinilor? (6:59)', options: [{ v: 'a', t: 'dincolo de mare' }, { v: 'b', t: 'în Templu' }, { v: 'c', t: 'în sinagogă' }], correct: 'c', chapter: 6 },
+                { id: 'c6mc5', text: 'Filip a răspuns lui Isus: "Pâinile pe care le-am putea cumpăra cu ___ de lei, n-ar ajunge ca fiecare să capete puțintel din ele." (6:7)', options: [{ v: 'a', t: 'o sută' }, { v: 'b', t: 'două sute' }, { v: 'c', t: 'cinci sute' }], correct: 'b', chapter: 6 },
+                { id: 'c6mc6', text: 'Isus a zis ucenicilor Săi: "Spuneți oamenilor să șadă jos." Și au șezut jos în număr de: (6:10)', options: [{ v: 'a', t: 'aproape trei mii' }, { v: 'b', t: 'aproape cinci mii' }, { v: 'c', t: 'aproape cincizeci mii' }], correct: 'b', chapter: 6 },
+                { id: 'c6mc7', text: 'Cine a zis: "Vorbirea aceasta este prea de tot; cine poate să o asculte?", după ce Isus a vorbit despre trupul Său ca fiind adevărata pâine? (6:60)', options: [{ v: 'a', t: 'unii din norod' }, { v: 'b', t: 'mai mulți iudei' }, { v: 'c', t: 'mulți din ucenicii lui Isus' }], correct: 'c', chapter: 6 },
+                { id: 'c6mc8', text: 'Cine a împărțit pâinea și peștii oamenilor care veniseră să-L asculte pe Isus? (6:11)', options: [{ v: 'a', t: 'Isus' }, { v: 'b', t: 'ucenicii' }, { v: 'c', t: 'un băiețel' }], correct: 'a', chapter: 6 },
+                { id: 'c6mc9', text: 'Ce ziceau oamenii despre Isus după ce au văzut minunea înmulțirii pâinilor și peștilor? (6:14)', options: [{ v: 'a', t: 'Cu adevărat acesta este prorocul cel așteptat' }, { v: 'b', t: 'El este Hristosul' }, { v: 'c', t: 'El este Acela despre care au scris prorocii' }], correct: 'a', chapter: 6 },
+                { id: 'c6mc10', text: 'Unde voiau să meargă ucenicii lui Isus când s-au urcat în corabie ca să treacă marea? (6:17)', options: [{ v: 'a', t: 'Capernaum' }, { v: 'b', t: 'Marea Tiberiadei' }, { v: 'c', t: 'Galileea' }], correct: 'a', chapter: 6 },
+                { id: 'c6mc11', text: 'După ce s-au săturat mulțimile, Isus a zis ucenicilor Săi: "Strângeți firimiturile care au rămas ca să: (6:12)', options: [{ v: 'a', t: 'nu se facă risipă"' }, { v: 'b', t: 'dăm drumul noroadelor"' }, { v: 'c', t: 'nu se piardă nimic"' }], correct: 'c', chapter: 6 },
+                { id: 'c6mc12', text: 'Unde L-au căutat noroadele pe Isus după înmulțirea pâinilor? (6:24)', options: [{ v: 'a', t: 'în pustie' }, { v: 'b', t: 'la Marea Galileii' }, { v: 'c', t: 'la Capernaum' }], correct: 'c', chapter: 6 },
+                { id: 'c6mc13', text: 'Unde L-au găsit pe Isus cei ce plecaseră cu corăbiile din Tiberiada ca să-L caute? (6:25)', options: [{ v: 'a', t: 'pe munte' }, { v: 'b', t: 'dincolo de mare' }, { v: 'c', t: 'aproape de locul unde mâncaseră pâinile' }], correct: 'b', chapter: 6 },
+                { id: 'c6mc14', text: 'Pâinile băiețelului din mulțime erau din: (6:9)', options: [{ v: 'a', t: 'aluat nedospit' }, { v: 'b', t: 'orz' }, { v: 'c', t: 'floare de făină' }], correct: 'b', chapter: 6 },
+                { id: 'c6mc15', text: 'Care este lucrarea pe care o cere Dumnezeu? (6:29)', options: [{ v: 'a', t: 'să credem în Acela pe care L-a trimis El' }, { v: 'b', t: 'să ascultăm de Acela pe care L-a trimis El' }, { v: 'c', t: 'să-L urmăm pe Acela pe care L-a trimis El' }], correct: 'a', chapter: 6 },
+                { id: 'c6mc16', text: 'Cine dă adevărata pâine din cer? (6:32)', options: [{ v: 'a', t: 'Tatăl' }, { v: 'b', t: 'Fiul' }, { v: 'c', t: 'Moise' }], correct: 'a', chapter: 6 },
+                { id: 'c6mc17', text: 'Marea Galileii se mai numea: (6:1)', options: [{ v: 'a', t: 'Râul Iordan' }, { v: 'b', t: 'Marea Moartă' }, { v: 'c', t: 'Marea Tiberiadei' }], correct: 'c', chapter: 6 },
+                { id: 'c6mc18', text: 'Iudeii cârteau împotriva lui Isus și ziceau: "Oare nu este acesta Isus, fiul lui __, pe ai cărui tată și mamă îi cunoaștem?" (6:42)', options: [{ v: 'a', t: 'Iacov' }, { v: 'b', t: 'Iosif' }, { v: 'c', t: 'David' }], correct: 'b', chapter: 6 },
+                { id: 'c6mc19', text: 'Cum se numea fratele lui Petru? (6:8)', options: [{ v: 'a', t: 'Iona' }, { v: 'b', t: 'Filip' }, { v: 'c', t: 'Andrei' }], correct: 'c', chapter: 6 }
+            ],
+            matching: [
+                // Cap 5
+                { id: 'c5m1', text: 'Poarta Oilor', options: [{ v: 'a', t: 'Ziua Sabatului' }, { v: 'b', t: 'Moise' }, { v: 'c', t: 'Betesda' }, { v: 'd', t: '38 de ani' }, { v: 'e', t: 'Scripturile' }], correct: 'c', chapter: 5 },
+                { id: 'c5m2', text: 'Bolnavul', options: [{ v: 'a', t: 'Ziua Sabatului' }, { v: 'b', t: 'Moise' }, { v: 'c', t: 'Betesda' }, { v: 'd', t: '38 de ani' }, { v: 'e', t: 'Scripturile' }], correct: 'd', chapter: 5 },
+                { id: 'c5m3', text: 'Ridică-ți patul', options: [{ v: 'a', t: 'Ziua Sabatului' }, { v: 'b', t: 'Moise' }, { v: 'c', t: 'Betesda' }, { v: 'd', t: '38 de ani' }, { v: 'e', t: 'Scripturile' }], correct: 'a', chapter: 5 },
+                { id: 'c5m4', text: 'Mărturisesc', options: [{ v: 'a', t: 'Ziua Sabatului' }, { v: 'b', t: 'Moise' }, { v: 'c', t: 'Betesda' }, { v: 'd', t: '38 de ani' }, { v: 'e', t: 'Scripturile' }], correct: 'e', chapter: 5 },
+                { id: 'c5m5', text: 'Învinuiască', options: [{ v: 'a', t: 'Ziua Sabatului' }, { v: 'b', t: 'Moise' }, { v: 'c', t: 'Betesda' }, { v: 'd', t: '38 de ani' }, { v: 'e', t: 'Scripturile' }], correct: 'b', chapter: 5 },
+                // Cap 6
+                { id: 'c6m1', text: 'Marea Galileii', options: [{ v: 'a', t: 'Simon Iscarioteanul' }, { v: 'b', t: 'Isus' }, { v: 'c', t: 'Simon Petru' }, { v: 'd', t: 'praznicul iudeilor' }, { v: 'e', t: 'Marea Tiberiadei' }], correct: 'e', chapter: 6 },
+                { id: 'c6m2', text: 'Paștele', options: [{ v: 'a', t: 'Simon Iscarioteanul' }, { v: 'b', t: 'Isus' }, { v: 'c', t: 'Simon Petru' }, { v: 'd', t: 'praznicul iudeilor' }, { v: 'e', t: 'Marea Tiberiadei' }], correct: 'd', chapter: 6 },
+                { id: 'c6m3', text: 'Andrei', options: [{ v: 'a', t: 'Simon Iscarioteanul' }, { v: 'b', t: 'Isus' }, { v: 'c', t: 'Simon Petru' }, { v: 'd', t: 'praznicul iudeilor' }, { v: 'e', t: 'Marea Tiberiadei' }], correct: 'c', chapter: 6 },
+                { id: 'c6m4', text: 'Filip', options: [{ v: 'a', t: 'Simon Iscarioteanul' }, { v: 'b', t: 'Isus' }, { v: 'c', t: 'Simon Petru' }, { v: 'd', t: 'praznicul iudeilor' }, { v: 'e', t: 'Marea Tiberiadei' }], correct: 'b', chapter: 6 },
+                { id: 'c6m5', text: 'Iuda', options: [{ v: 'a', t: 'Simon Iscarioteanul' }, { v: 'b', t: 'Isus' }, { v: 'c', t: 'Simon Petru' }, { v: 'd', t: 'praznicul iudeilor' }, { v: 'e', t: 'Marea Tiberiadei' }], correct: 'a', chapter: 6 }
+            ],
+            multipleAnswer: [
+                // Cap 5
+                { id: 'c5ma1', text: 'Ce se afla la Betesda? (5:4)', options: [{ v: 'a', t: 'Era o scăldătoare' }, { v: 'b', t: 'Un înger se cobora din când în când și tulbura apa' }, { v: 'c', t: 'Primul om care intra în apă era vindecat' }], correct: ['a', 'b', 'c'], chapter: 5 },
+                { id: 'c5ma2', text: 'Ce i-a zis Isus slăbănogului după ce l-a găsit în Templu? (5:14)', options: [{ v: 'a', t: 'Iată că te-ai făcut sănătos' }, { v: 'b', t: 'Să îți faci o familie' }, { v: 'c', t: 'Să nu mai păcătuiești' }], correct: ['a', 'c'], chapter: 5 },
+                { id: 'c5ma3', text: 'De ce căutau iudeii să îl omoare pe Isus? (5:18)', options: [{ v: 'a', t: 'Pentru că nu i-a vindecat pe ei' }, { v: 'b', t: 'Pentru că dezlega (vindeca) în ziua sabatului' }, { v: 'c', t: 'Pentru că zicea că Dumnezeu este Tatăl Său' }], correct: ['b', 'c'], chapter: 5 },
+                { id: 'c5ma4', text: 'Cine ascultă cuvintele Mele și crede în Cel ce M-a trimis… (5:24)', options: [{ v: 'a', t: 'are viață veșnică' }, { v: 'b', t: 'nu vine la judecată' }, { v: 'c', t: 'a trecut din moarte la viață' }], correct: ['a', 'b', 'c'], chapter: 5 },
+                // Cap 6
+                { id: 'c6ma1', text: 'De ce S-a coborât Domnul Isus din cer? (6:33,38)', options: [{ v: 'a', t: 'ca să dea viață lumii' }, { v: 'b', t: 'ca să facă voia Celui ce L-a trimis' }, { v: 'c', t: 'ca să nu facă voia Sa' }], correct: ['a', 'b', 'c'], chapter: 6 },
+                { id: 'c6ma2', text: 'Voia Celui ce M-a trimis este: (6:39)', options: [{ v: 'a', t: 'să nu pierd nimic din tot ce Mi-a dat El' }, { v: 'b', t: 'să înviez în ziua de apoi tot ce Mi-a dat El' }, { v: 'c', t: 'să mântuiesc pe cei ce Mi i-a dat El' }], correct: ['a', 'b'], chapter: 6 },
+                { id: 'c6ma3', text: 'Când ucenicii lui Isus s-au suit în corabie ca să treacă marea: (6:17,18)', options: [{ v: 'a', t: 'se întunecase' }, { v: 'b', t: 'marea era întărâtată' }, { v: 'c', t: 'vântul sufla puternic' }], correct: ['a', 'b', 'c'], chapter: 6 },
+                { id: 'c6ma4', text: 'Despre Iuda ni se spune că: (6:71)', options: [{ v: 'a', t: 'era unul din cei doisprezece' }, { v: 'b', t: 'tatăl lui se numea Simon' }, { v: 'c', t: 'el avea să-L vândă pe Domnul Isus' }], correct: ['a', 'b', 'c'], chapter: 6 },
+                { id: 'c6ma5', text: 'Ce distanță parcurseseră ucenicii pe mare când L-au văzut pe Isus umblând pe ape și apropiindu-Se de ei? (6:19)', options: [{ v: 'a', t: 'douăzeci și cinci de stadii' }, { v: 'b', t: 'treizeci de stadii' }, { v: 'c', t: 'patruzeci de stadii' }], correct: ['a', 'b'], chapter: 6 },
+                { id: 'c6ma6', text: 'Isus a zis ucenicilor: "(...) cuvintele pe care vi le-am spus Eu sunt: (6:63)', options: [{ v: 'a', t: 'duh' }, { v: 'b', t: 'viață' }, { v: 'c', t: 'cuvintele vieții veșnice' }], correct: ['a', 'b'], chapter: 6 },
+                { id: 'c6ma7', text: 'Isus a zis iudeilor: "Adevărat, adevărat vă spun că n-aveți viața în voi înșivă dacă nu: (6:53)', options: [{ v: 'a', t: 'credeți în Cel ce M-a trimis' }, { v: 'b', t: 'mâncați trupul Fiului omului' }, { v: 'c', t: 'beți sângele Fiului omului' }], correct: ['b', 'c'], chapter: 6 },
+                { id: 'c6ma8', text: 'Nimeni nu poate să vină la Mine dacă: (6:64,65)', options: [{ v: 'a', t: 'nu i-a fost dat de Tatăl Meu' }, { v: 'b', t: 'nu crede în Cel ce M-a trimis' }, { v: 'c', t: 'nu-l atrage Tatăl, care M-a trimis' }], correct: ['a', 'c'], chapter: 6 },
+                { id: 'c6ma9', text: 'Lucrați nu pentru mâncarea pieritoare, ci pentru mâncarea care rămâne pentru: (6:27)', options: [{ v: 'a', t: 'viața veșnică' }, { v: 'b', t: 'viața viitoare' }, { v: 'c', t: 'viața pe care v-o va da Fiul omului' }], correct: ['a', 'c'], chapter: 6 },
+                { id: 'c6ma10', text: 'Noroadele au plecat la Capernaum să-L caute pe Isus și când L-au găsit L-au întrebat: (6:26,28,30)', options: [{ v: 'a', t: 'Învățătorule, când ai venit aici?' }, { v: 'b', t: 'Ce să facem ca să săvârșim lucrările lui Dumnezeu?' }, { v: 'c', t: 'Ce semn faci Tu ca să-l vedem și să credem în Tine?' }], correct: ['a', 'b', 'c'], chapter: 6 },
+                { id: 'c6ma11', text: 'Pâinea lui Dumnezeu este aceea care: (6:33)', options: [{ v: 'a', t: 'se coboară din cer' }, { v: 'b', t: 'dă lumii viață' }, { v: 'c', t: 'au mâncat-o israeliții în pustie' }], correct: ['a', 'b'], chapter: 6 },
+                { id: 'c6ma12', text: 'În mai multe rânduri, Isus a afirmat în cuvântările Sale: "Eu îl voi învia în ziua de apoi". La cine făcea referire? (6:40,44,52)', options: [{ v: 'a', t: 'cel ce vede pe Fiul și crede în El' }, { v: 'b', t: 'cel ce mănâncă trupul Lui și bea sângele Lui' }, { v: 'c', t: 'cel ce vine la Fiul, fiind atras de Tatăl' }], correct: ['a', 'b', 'c'], chapter: 6 },
+                { id: 'c6ma13', text: 'În convorbirea cu noroadele cu privire la adevărata pâine, Isus afirmă: (6:35,41,48,51)', options: [{ v: 'a', t: 'Eu sunt Pâinea vieții' }, { v: 'b', t: 'Eu sunt Pâinea vie' }, { v: 'c', t: 'Eu sunt Pâinea care s-a coborât din cer' }], correct: ['a', 'b', 'c'], chapter: 6 },
+                { id: 'c6ma14', text: 'Cine poate veni la Domnul Isus? (6:44,45)', options: [{ v: 'a', t: 'oricine a ascultat pe Tatăl' }, { v: 'b', t: 'oricine a primit învățătura Tatălui' }, { v: 'c', t: 'oricine este atras de Tatăl' }], correct: ['a', 'b', 'c'], chapter: 6 },
+                { id: 'c6ma15', text: 'Cine crede în Isus: (6:35,40)', options: [{ v: 'a', t: 'nu va ajunge lipsit' }, { v: 'b', t: 'nu va înseta niciodată' }, { v: 'c', t: 'are viața veșnică' }], correct: ['b', 'c'], chapter: 6 },
+                { id: 'c6ma16', text: 'Cine mănâncă trupul Meu și bea sângele Meu: (6:54,56)', options: [{ v: 'a', t: 'are viața veșnică' }, { v: 'b', t: 'rămâne în Mine, și Eu rămân în el' }, { v: 'c', t: 'Eu îl voi învia în ziua de apoi' }], correct: ['a', 'b', 'c'], chapter: 6 },
+                { id: 'c6ma17', text: 'Care dintre afirmațiile de mai jos referitoare la pâinea pe care o dă Fiul sunt adevărate? (6:51)', options: [{ v: 'a', t: 'Oricine mănâncă din ea va trăi în veac.' }, { v: 'b', t: 'Ea este trupul lui Isus.' }, { v: 'c', t: 'Ea este trupul pe care îl va da Isus pentru viața lumii.' }], correct: ['a', 'b', 'c'], chapter: 6 },
+                { id: 'c6ma18', text: 'Ce a răspuns Petru Domnului Isus când i-a întrebat: "Voi nu vreți să vă duceți?" (6:67-69)', options: [{ v: 'a', t: 'Noi am crezut' }, { v: 'b', t: 'Tu ai cuvintele vieții veșnice' }, { v: 'c', t: 'Noi am ajuns la cunoștința că Tu ești Hristosul, Sfântul lui Dumnezeu' }], correct: ['a', 'b', 'c'], chapter: 6 },
+                { id: 'c6ma19', text: 'Ce au făcut ucenicii când L-au văzut pe Isus umblând pe mare și apropiindu-Se de corabia lor? (6:19)', options: [{ v: 'a', t: 's-au înfricoșat.' }, { v: 'b', t: 'au vrut să-L ia în corabie' }, { v: 'c', t: 'au țipat de spaimă' }], correct: ['a', 'b'], chapter: 6 },
+                { id: 'c6ma20', text: 'Despre cine vorbea Isus când a zis ucenicilor: "Și totuși unul din voi este un drac"? (6:70-71)', options: [{ v: 'a', t: 'Iuda' }, { v: 'b', t: 'fiul lui Simon din Cirene' }, { v: 'c', t: 'fiul lui Simon Iscarioteanul' }], correct: ['a', 'c'], chapter: 6 }
+            ]
+        };
+
+        let answers = {};
+        let submitted = false;
+
+        function render() {
+            const app = document.getElementById('app');
+            app.innerHTML = `
+                <div class="bg-white rounded-lg shadow-xl p-6 mb-6">
+                    <h1 class="text-3xl font-bold text-indigo-900 mb-2">Quiz Combinat - Ioan Capitolele 5 și 6</h1>
+                    <p class="text-gray-600">Testează cunoștințele tale despre capitolele 5 și 6 din Evanghelia după Ioan</p>
+                </div>
+                ${submitted ? renderScore() : ''}
+                ${renderSection('I. Adevărat sau Fals', questions.trueFalse, 'tf')}
+                ${renderSection('II. Întrebări cu răspuns simplu (un singur răspuns)', questions.multipleChoice, 'mc')}
+                ${renderSection('III. Faceți asocierea', questions.matching, 'match')}
+                ${renderSection('IV. Întrebări cu răspuns multiplu (pot fi 1, 2, 3 sau mai multe răspunsuri corecte)', questions.multipleAnswer, 'multiple')}
+                ${!submitted ? '<div class="bg-white rounded-lg shadow-xl p-6"><button onclick="submitQuiz()" class="w-full bg-indigo-600 text-white py-3 rounded-lg hover:bg-indigo-700 font-semibold text-lg">Trimite Răspunsurile</button></div>' : ''}
+            `;
+        }
+
+        function renderScore() {
+            let correct = 0, total = 0;
+            Object.values(questions).forEach(section => {
+                section.forEach(q => {
+                    total++;
+                    const userAnswer = answers[q.id];
+                    if (Array.isArray(q.correct)) {
+                        const correctSet = new Set(q.correct);
+                        const userSet = new Set(userAnswer || []);
+                        if (correctSet.size === userSet.size && [...correctSet].every(v => userSet.has(v))) correct++;
+                    } else {
+                        if (userAnswer === q.correct) correct++;
+                    }
+                });
+            });
+            const score = Math.round((correct / total) * 100);
+            const feedback = score >= 80 ? 'Excelent! 🎉' : score >= 60 ? 'Bine! 👍' : 'Mai studiază! 📖';
+            return `<div class="bg-white rounded-lg shadow-xl p-6 mb-6"><div class="text-center"><h2 class="text-2xl font-bold mb-2">Scorul tău: ${score}%</h2><p class="text-gray-600 mb-2">${correct} din ${total} răspunsuri corecte</p><p class="text-gray-600 mb-4">${feedback}</p><button onclick="resetQuiz()" class="bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700">🔄 Reîncepe Quiz-ul</button></div></div>`;
+        }
+
+        function renderSection(title, qs, type) {
+            return `<div class="bg-white rounded-lg shadow-xl p-6 mb-6"><h2 class="text-xl font-bold text-indigo-800 mb-4">${title}</h2><div class="space-y-6">${qs.map((q, i) => renderQuestion(q, i + 1, type)).join('')}</div></div>`;
+        }
+
+        function renderQuestion(q, num, type) {
+            const isCorrect = checkAnswer(q);
+            const icon = submitted ? (isCorrect ? '✅' : '❌') : '';
+            const chapterBadge = `<span class="text-xs bg-indigo-100 text-indigo-700 px-2 py-1 rounded">Cap ${q.chapter}</span>`;
+            let optionsHtml = '';
+            
+            if (type === 'tf') {
+                optionsHtml = `<div class="flex gap-4 ml-6">
+                    <label class="flex items-center gap-2 cursor-pointer">
+                        <input type="radio" name="${q.id}" value="A" ${answers[q.id] === 'A' ? 'checked' : ''} ${submitted ? 'disabled' : ''} onchange="updateAnswer('${q.id}', 'A')" class="w-4 h-4">
+                        <span>Adevărat (A)</span>
+                    </label>
+                    <label class="flex items-center gap-2 cursor-pointer">
+                        <input type="radio" name="${q.id}" value="F" ${answers[q.id] === 'F' ? 'checked' : ''} ${submitted ? 'disabled' : ''} onchange="updateAnswer('${q.id}', 'F')" class="w-4 h-4">
+                        <span>Fals (F)</span>
+                    </label>
+                </div>`;
+            } else if (type === 'mc' || type === 'match') {
+                optionsHtml = `<div class="ml-6 space-y-2">${q.options.map(opt => `
+                    <label class="flex items-start gap-2 cursor-pointer">
+                        <input type="radio" name="${q.id}" value="${opt.v}" ${answers[q.id] === opt.v ? 'checked' : ''} ${submitted ? 'disabled' : ''} onchange="updateAnswer('${q.id}', '${opt.v}')" class="w-4 h-4 mt-1">
+                        <span>${opt.v}) ${opt.t}</span>
+                    </label>
+                `).join('')}</div>`;
+            } else if (type === 'multiple') {
+                optionsHtml = `<div class="ml-6 space-y-2">${q.options.map(opt => `
+                    <label class="flex items-start gap-2 cursor-pointer">
+                        <input type="checkbox" value="${opt.v}" ${(answers[q.id] || []).includes(opt.v) ? 'checked' : ''} ${submitted ? 'disabled' : ''} onchange="updateMultipleAnswer('${q.id}', '${opt.v}')" class="w-4 h-4 mt-1">
+                        <span>${opt.v}) ${opt.t}</span>
+                    </label>
+                `).join('')}</div>`;
+            }
+
+            const correctAnswer = submitted && !isCorrect ? `<div class="mt-3 ml-6 p-3 bg-blue-50 rounded border-l-4 border-blue-500"><p class="text-sm font-semibold text-blue-800">Răspuns corect: ${Array.isArray(q.correct) ? q.correct.join(', ').toUpperCase() : q.correct}</p></div>` : '';
+
+            return `<div class="p-4 bg-gray-50 rounded-lg"><div class="flex items-start gap-2 mb-3"><span class="font-semibold text-indigo-700">${num}.</span><div class="flex-grow"><p class="text-gray-800">${q.text}</p><div class="mt-1">${chapterBadge}</div></div><span class="text-2xl">${icon}</span></div>${optionsHtml}${correctAnswer}</div>`;
+        }
+
+        function checkAnswer(q) {
+            if (!submitted) return null;
+            const userAnswer = answers[q.id];
+            if (Array.isArray(q.correct)) {
+                const correctSet = new Set(q.correct);
+                const userSet = new Set(userAnswer || []);
+                return correctSet.size === userSet.size && [...correctSet].every(v => userSet.has(v));
+            }
+            return userAnswer === q.correct;
+        }
+
+        function updateAnswer(id, value) {
+            answers[id] = value;
+        }
+
+        function updateMultipleAnswer(id, value) {
+            const current = answers[id] || [];
+            answers[id] = current.includes(value) ? current.filter(v => v !== value) : [...current, value];
+        }
+
+        function submitQuiz() {
+            submitted = true;
+            render();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function resetQuiz() {
+            answers = {};
+            submitted = false;
+            render();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        render();
+    </script>
+</body>
+</html>
